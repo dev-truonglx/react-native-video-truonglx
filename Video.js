@@ -79,10 +79,6 @@ export default class Video extends Component {
     return await NativeModules.VideoManager.save(options, findNodeHandle(this._root));
   }
 
-  componentWillUnmount() {
-    NativeModules.VideoManager.destroy(findNodeHandle(this._root));
-  }
-
   restoreUserInterfaceForPictureInPictureStopCompleted = (restored) => {
     this.setNativeProps({ restoreUserInterfaceForPIPStopCompletionHandler: restored });
   };

@@ -1694,16 +1694,6 @@ static int const RCTVideoUnset = -1;
   }
 }
 
-- (void)destroy
-{
-  if (_playerLayer.player)
-  {
-    [_playerLayer.player pause];
-    _playerLayer.player = nil;
-  }
-  [self removeFromSuperview];
-}
-
 - (void)setLicenseResult:(NSString *)license {
   NSData *respondData = [self base64DataFromBase64String:license];
   if (_loadingRequest != nil && respondData != nil) {
