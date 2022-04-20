@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, requireNativeComponent, NativeModules, View, ViewPropTypes, Image, Platform, findNodeHandle } from 'react-native';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { StyleSheet, requireNativeComponent, NativeModules, View, Image, Platform, findNodeHandle } from 'react-native';
+import { ViewPropTypes } from "deprecated-react-native-prop-types";import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 import TextTrackType from './TextTrackType';
 import FilterType from './FilterType';
 import DRMType from './DRMType';
@@ -77,6 +77,10 @@ export default class Video extends Component {
 
   save = async (options?) => {
     return await NativeModules.VideoManager.save(options, findNodeHandle(this._root));
+  }
+
+  componentWillUnmount() {
+    NativeModules.VideoManager.destroy(findNodeHandle(this._root));
   }
 
   restoreUserInterfaceForPictureInPictureStopCompleted = (restored) => {
